@@ -49,6 +49,11 @@ class Three_bosses_raid(object):
     
     
     def enter_the_dungeon(self):
+        """Enters dungeon and add xp if win
+        
+        Returns:
+            boolean -- pass or not
+        """
         boss_alive = True
         while(boss_alive):
             for member in self.team.members:
