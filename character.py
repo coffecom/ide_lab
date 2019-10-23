@@ -58,6 +58,15 @@ class Character(object):
     def restore_hp(self, value):
         self.hp+=value
 
+    def suicude(self):
+        self.hp = 0
+        if self.hp <= 0:
+            self.hp = 0
+            self.status = Character_status.DEAD  
+            
+    def get_characteristics(self):
+         return "LEVEL: " + str(self.level) + "\nHP: " + str(self.hp) 
+
     def level_up(self):
         if self.status == Character_status.DEAD or self.xp < 10:
             return
