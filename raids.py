@@ -33,3 +33,40 @@ class Easy_raid(object):
         for member in self.team.members:
             member.xp+= self.creeps_amount*self.creeps_xp + self.boss_xp
         return True
+
+class Three_bosses_raid(object):
+    def __init__(self, team, k = 1):
+        self.team = team
+        self.boss1_hp = 100 * (2 * k)
+        self.boss1_damage = 7 * (2 * k)
+        self.boss1_xp = 8 * (2 * k)
+        self.boss2_hp = 150 * (2 * k)
+        self.boss2_damage = 9 * (2 * k)
+        self.boss2_xp = 12 * (2 * k)    
+        self.boss3_hp = 200 * (2 * k)
+        self.boss3_damage = 4 * (2 * k)
+        self.boss3_xp = 12 * (2 * k)
+    
+    
+    def enter_the_dungeon(self):
+        """Enters dungeon and add xp if win
+        
+        Returns:
+            boolean -- pass or not
+        """
+        boss_alive = True
+        while(boss_alive):
+            for member in self.team.members:
+                if member.status == Character_status.ALIVE:
+                    self.boss1_hp -= (member.atack + member.weapon.value)
+                    member.take_damage(self.boss1_damage)
+                    self.boss2_hp -= (member.atack + member.weapon.value)
+                    member.take_damage(self.boss2_damage)
+                    self.boss3_hp -= (member.atack + member.weapon.value)
+                    member.take_damage(self.boss3_damage)
+                if self.team.is_anyone_alive == False: return False
+                if self.boss1_hp+self.boss2_hp+self.boss3_hp <= 0:
+                    boss_alive = False
+        for member in self.team.members:
+            member.xp+= self.boss1_xp*self.boss2_xp + self.boss3_xp
+        return True
