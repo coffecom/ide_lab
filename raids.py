@@ -70,3 +70,7 @@ class Three_bosses_raid(object):
         for member in self.team.members:
             member.xp+= self.boss1_xp*self.boss2_xp + self.boss3_xp
         return True
+
+class Dice():
+    def __init__(self, n_sides):
+        self.n_sides = n_sides
