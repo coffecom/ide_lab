@@ -1,0 +1,6 @@
+[submodule "c_project"]
+	path = c_project
+	url = https://github.com/coffecom/directoryToHTML.git
+[submodule "java_project"]
+	path = java_project
+	url = https://github.com/coffecom/TODO_list.git
