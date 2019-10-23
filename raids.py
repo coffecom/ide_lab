@@ -74,3 +74,7 @@ class Three_bosses_raid(object):
 class Dice():
     def __init__(self, n_sides):
         self.n_sides = n_sides
+
+    def roll_dice(self):
+        from random import randrange
+        return randrange(self.n_sides)
