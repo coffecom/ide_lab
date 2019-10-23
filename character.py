@@ -35,7 +35,7 @@ class Character(object):
 
         self.level = 1
         self.status = Character_status.ALIVE
-        self.atack = 10
+        self.attack = 10
         self.xp = 0
     
     def __str__(self):
@@ -63,7 +63,7 @@ class Character(object):
         if self.hp <= 0:
             self.hp = 0
             self.status = Character_status.DEAD  
-            
+
     def get_characteristics(self):
          return "LEVEL: " + str(self.level) + "\nHP: " + str(self.hp) 
 
@@ -72,8 +72,18 @@ class Character(object):
             return
         self.xp -= 10
         self.level += 1
-        self.atack += 2
+        self.attack += 2
         self.level_up()   
+    
+    def go_hunt(self):
+        random.seed()
+        luck = random.random()
+        print('Somedays you hunt, somedays you are hunt. Luck: ' + str(round(luck,3)))
+        self.hp -= round(self.hp * luck)
+        self.check_status
+        if self.status == Character_status.ALIVE:
+            self.xp += int(luck*10)
+
 
 
 class Hero(Character):
@@ -87,9 +97,9 @@ class Hero(Character):
     def __str__(self):
         return self.status.name + ' ' + self.race.value + ' ' + self.hero_class.value + ' with '+ self.weapon.name + ', '+ str(self.level) +' level, name ' + self.name + ' ' + str(round(self.hp,3)) +' hp'
         
-    def attack(self, enemy, damage):
+    def attack_enemy(self, enemy, damage):
         print(self.name+' attacks '+enemy.name+'!')
-        enemy.take_damage(self.atack + self.weapon.value)
+        enemy.take_damage(self.attack + self.weapon.value)
     
     def take_weapon(self, weapon):
         self.weapon = weapon
