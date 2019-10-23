@@ -117,7 +117,12 @@ class Team(object):
     def level_up_everyone(self):
         for member in self.members:
             member.level_up()
-
+            
+    def __str__(self):
+        string = 'TEAM: \n'
+        for member in self.members:
+            string += member.__str__+"\n"
+        return string
     
 
 
