@@ -117,11 +117,17 @@ class Team(object):
     def level_up_everyone(self):
         for member in self.members:
             member.level_up()
-            
+
     def __str__(self):
         string = 'TEAM: \n'
         for member in self.members:
             string += member.__str__+"\n"
+        return string
+        
+    def get_detailed_inf(self):
+        string = 'TEAM: \n'
+        for member in self.members:
+            string += member.__str__+" attack: "+member.attack+" xp: "+member.xp+"\n"
         return string
     
 
