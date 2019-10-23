@@ -155,6 +155,18 @@ class Team(object):
             string += member.name+" attack: "+ member.attack + " hp: " + member.hp  + "\n"
         return string
     
+    def remove_all_dead_members(self):
+        for member in self.members:
+            if member.status.value == 0:
+                self.members.remove(member)
+                
+    def damage_everyone(self, value):
+        for member in self.members:
+            member.hp -= value
+            member.check_status
+            
+    def heal_member(self, member, value):
+        self.members[self.members.index(member)].hp += value
 
 
 
