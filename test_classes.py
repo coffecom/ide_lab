@@ -1,5 +1,6 @@
-
 import unittest
+import main
+import sys
 from character import Character, Character_status, Hero, Hero_class, Race
 
 class TestCharacter(unittest.TestCase):
@@ -20,3 +21,13 @@ class TestHero(unittest.TestCase):
     def test_use_normal_skill(self):
         self.hero.use_normal_skill(self.enemy)
         self.assertEqual(self.hero.mana, 5)
+		
+
+if __name__ == '__main__':
+	test1 = TestCharacter()
+	test1.setUp()
+	test1.test_take_damage_exception()
+	
+	test2 = TestHero()
+	test2.setUp()
+	test2.test_use_normal_skill()
